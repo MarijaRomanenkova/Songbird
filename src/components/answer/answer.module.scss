@@ -1,20 +1,21 @@
 .answer-container {
-    display: grid;
-    grid-template-columns: minmax(200px, 600px) 1fr 1fr;
-    column-gap: 3rem;;
+    margin: 2rem 0rem;
+    display: flex;
+    justify-content: space-between;
+    
 }
 
-.birds-list-container {      
-    max-width: 100%;
+.birds-list-container {  
     list-style-type: disc;
     list-style-position: inside;
     padding: 0px;
+    min-width: 49%;
     .bird-item {
         border: 1px solid $dark-mode-border;
         background-color:$dark; 
-        padding: 0.85rem 0.125rem;
-        font-weight: 400;
-        width: 100%;
+        padding: 0.85rem 1.25rem;
+        font-weight: 400;        
+        
     }
     .bird-item:focus {
         background-color:$dark-mode-border;
@@ -23,8 +24,8 @@
         background-color:$dark-mode-border;
     }
     .bird-item::marker {
-        color: red;
-        font-size: 1.5rem;        
+        color: $dark-mode-border;
+        font-size: 1.75rem;        
     }
     .bird-item:first-child {
         border-top-left-radius: 0.25rem;
@@ -34,10 +35,39 @@
         border-bottom-left-radius: 0.25rem;
         border-bottom-right-radius: 0.25rem;
     }
+
+    .bird-item--correct{
+        @extend .bird-item;
+        &::marker {
+            color: $green;
+            font-size: 1.75rem;     
+        }
+    }
     
+    .bird-item--incorrect{
+        @extend .bird-item;
+        &::marker {
+            color: $red;
+            font-size: 1.75rem;     
+        }
+    }
 
 }
 
 .hidden {
     display: none;
+}
+
+.bird-details--dummy {
+    border: 1px solid $dark-mode-border;
+    border-radius: 0.25rem;
+    background-color:$dark; 
+    padding: 0.85rem 0rem  5rem 0.125rem;
+    font-weight: 400;
+    min-width: 49%;
+    height: 100%;
+    &-text {
+        display:block;
+    }
+    
 }

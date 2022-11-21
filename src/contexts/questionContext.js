@@ -50,8 +50,7 @@ const initialState = {
     birdsData,
     currentCategoryIndex: 0,
     currentBirdId: currentId(), 
-    chosenBirdId: setChosenBirdId(), 
-    usedBirdsId: [],
+    chosenBirdId: setChosenBirdId(),     
     clicks:0,  
     score: 0,
     correctAnswers: 0,
@@ -62,20 +61,15 @@ const initialState = {
 };
 
 const reducer = (state, action) => { 
-
-    console.log('payload', action.payload );
-    console.log('current array', state.usedBirdsId)
-    console.log('correctAnswer', state.isCorrectAnswer)
     switch (action.type) {
-      
       case 'NEXT_LEVEL':            
           return {
             ...state,
             currentBirdId: currentId(),
             currentCategoryIndex: state.currentCategoryIndex +1,
             isCorrectAnswer: setCorrectAnswer(false),
-            clicks: setToZero()
-            
+            clicks: setToZero(),
+            level: state.level + 1
       }
       
       case 'WIN' : 
@@ -90,8 +84,7 @@ const reducer = (state, action) => {
             chosenBirdId: setChosenBirdId(action.payload), 
             isCorrectAnswer: setCorrectAnswer(true),
             correctAnswers: state.correctAnswers +1 ,                   
-            win: setWin(false),            
-            usedBirdsId: [...state.usedBirdsId, action.payload],
+            win: setWin(false), 
             score: setScore(state.score, state.clicks),
             };
         }
@@ -103,6 +96,19 @@ const reducer = (state, action) => {
             chosenBirdId: setChosenBirdId(action.payload),
             win: setWin(false),
           }
+      case 'NEW_GAME':
+        return {
+          ...state,
+          currentCategoryIndex: setToZero(),
+          currentBirdId: currentId(), 
+          chosenBirdId: setToZero(),           
+          clicks: setToZero(),
+          score: setToZero(),     
+          correctAnswers: setToZero(),
+          isCorrectAnswer: setCorrectAnswer(false),          
+          win: setWin(false),
+          level: setToZero(),
+        }
 
       default:
       throw new Error(`Unknown action type: ${action.type}`);      

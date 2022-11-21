@@ -13,7 +13,7 @@ const Question = () => {
 
     console.log('used Ids' , questionState.usedBirdsId);
      
-    const mystery = '*****'
+    const mystery = '******'
     return ( 
         <div className={!isWin ? 'question-container' : 'hidden'}>            
             <img className= 'question-image'

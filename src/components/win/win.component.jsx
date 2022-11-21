@@ -10,7 +10,7 @@ const Win = () => {
     const isWin = questionState.win;
     const score = questionState.score;
     const width = window.innerWidth;
-    const height = '800px';
+    const height = window.innerHeight;
 
     return (
         <Fragment>

@@ -1,25 +1,36 @@
-.question-container {
-    display: flex; 
-    justify-content: center;   
-    align-items: center;
+.question {
+    &-container {
+    display: flex;     
     background-color: $dark;
-    .question-box {
-        padding-left: 50px;
+    overflow: hidden;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1.56rem;
     }
-    .question-title {
-        border-bottom: 1px solid $dark-mode-border;
-        padding: 15px 20px;
-        width: 100%;
-    }
-    .question-image {
+    
+    &-image {
         width: 200px;
         height: 155px;
-        border-radius: 0.25rem;
+        border-radius: 0.625rem;
         object-fit: cover;
     }
-    .question-audio {
-        padding: 15px 20px;
+
+    &-box {
+        margin-left: 2rem;
+        width: 70%;
     }
+
+    &-title {        
+        padding: 0.5rem 0rem 1.25rem 0rem ;
+        margin: 0 0 0 0.5rem;
+        border-bottom: 1px solid $dark-mode-border;
+        
+    }
+    
+    &-audio {
+        
+    }
+    
 }
 
 .hidden {

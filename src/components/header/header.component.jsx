@@ -14,7 +14,7 @@ const Header = () => {
             <div>
                 <img className="logo" src={logo} alt="Logo" />
             </div>
-            <div className='score'><h5> Score: {score}</h5> </div>
+            <div className='score'><p> Score: {score}</p> </div>
         </div>
         
     )
