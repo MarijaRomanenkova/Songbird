@@ -1,0 +1,64 @@
+@import "react-h5-audio-player/lib/styles.css";
+@import './variables.scss';
+@import './components/header/header.module.scss';
+@import './components/categories/categories.module.scss';
+@import './components/question/question.module.scss';
+@import './components/bird-details/bird.details.module.scss';
+@import './components/answer/answer.module.scss';
+@import './components/button/button.module.scss';
+@import './App.module.scss';
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color : rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: $white;
+  background-color: $dark-background-color;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.rhap_container {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: $white;
+  width: 500px;
+  svg {
+    color : $green;
+  }  
+}
+
+.rhap_progress-section {
+  display: grid;
+  grid-template-areas:
+    "top top top top"
+    "left . . right";
+  
+}
+.rhap_progress-container {
+  grid-area: top;
+}
+
+.rhap_current-time {
+  grid-area: left;
+  color: $white;
+}
+
+.rhap_total-time {
+  grid-area: right;
+  color: $white;
+  text-align:end;
+}
+
+
+

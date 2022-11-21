@@ -1,0 +1,36 @@
+.disabled {
+    display:inline-block;
+    color: $white;    
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    border: 1px solid $dark-mode-border;
+    border-radius: 0.25rem;
+    background-color: $dark;
+    box-shadow: none;
+    width: 100%;
+    cursor: pointer;
+    line-height: 22.5 px;    
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+
+.btn {
+    @extend .disabled;
+    background-color: $green;
+    transition: 0.3s ease;      
+    -webkit-appearance: button;
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        background-color: $teal;
+    }
+}
+
+.hidden {
+    display: none;
+}

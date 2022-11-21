@@ -1,0 +1,43 @@
+.answer-container {
+    display: grid;
+    grid-template-columns: minmax(200px, 600px) 1fr 1fr;
+    column-gap: 3rem;;
+}
+
+.birds-list-container {      
+    max-width: 100%;
+    list-style-type: disc;
+    list-style-position: inside;
+    padding: 0px;
+    .bird-item {
+        border: 1px solid $dark-mode-border;
+        background-color:$dark; 
+        padding: 0.85rem 0.125rem;
+        font-weight: 400;
+        width: 100%;
+    }
+    .bird-item:focus {
+        background-color:$dark-mode-border;
+    }
+    .bird-item:hover {
+        background-color:$dark-mode-border;
+    }
+    .bird-item::marker {
+        color: red;
+        font-size: 1.5rem;        
+    }
+    .bird-item:first-child {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+    .bird-item:last-child {
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+    
+
+}
+
+.hidden {
+    display: none;
+}

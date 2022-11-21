@@ -1,0 +1,32 @@
+.bird-details-container {
+    display: grid;
+    grid-template-areas: 
+        "image" "details"
+        "description" "description";
+    border: 1px solid $dark-mode-border;
+    background-color:$dark; 
+    padding: 0.85rem 0.125rem;
+    font-weight: 400;
+    width: 100%;
+}
+
+.bird-details--image-wrapper {
+    grid-area: "image";
+    max-width: 100 px;
+    
+}
+
+.bird-details-image {
+    width: 200px;
+    height: 155px;
+    border-radius: 0.25rem;
+    object-fit: cover;
+}
+
+.bird-details--wrapper {
+    grid-area: "details";
+}
+
+.bird-description {
+    grid-area: "description";
+}
