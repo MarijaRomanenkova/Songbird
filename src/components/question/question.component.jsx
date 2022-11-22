@@ -29,8 +29,7 @@ const Question = () => {
                     showFilledProgress={true}
                     volumeControls={true}
                     customAdditionalControls={[]}  
-                    customVolumeControls={[]} 
-                    
+                    customVolumeControls={[]}                     
                 />
             </div>        
             

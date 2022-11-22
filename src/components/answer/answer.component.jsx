@@ -37,6 +37,7 @@ const Answer = () => {
                 image ={chosenBird.image}
                 description={chosenBird.description}
                 audio={chosenBird.audio}
+                species={chosenBird.species}
                 />
                 :<div className="bird-details--dummy">
                     <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>

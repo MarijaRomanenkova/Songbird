@@ -28,6 +28,8 @@ const setToZero = () => {
   return 0;
 }
 
+
+
 const setScore = (prevScore, clicks) => {
   let score = 0; 
   if(clicks === 0) {
@@ -53,7 +55,7 @@ const initialState = {
     chosenBirdId: setChosenBirdId(),     
     clicks:0,  
     score: 0,
-    correctAnswers: 0,
+    correctAnswers: 0,    
     isCorrectAnswer: setCorrectAnswer(),
     level: 0,
     win: setWin(),
@@ -95,7 +97,8 @@ const reducer = (state, action) => {
             clicks: state.clicks +1 , 
             chosenBirdId: setChosenBirdId(action.payload),
             win: setWin(false),
-          }
+         }
+    
       case 'NEW_GAME':
         return {
           ...state,
