@@ -27,8 +27,10 @@ const Question = () => {
                     autoPlayAfterSrcChange={false}          
                     showJumpControls={false}
                     showFilledProgress={true}
+                    volumeControls={true}
                     customAdditionalControls={[]}  
                     customVolumeControls={[]} 
+                    
                 />
             </div>        
             

@@ -1,33 +1,38 @@
-.bird-details-container {
+.bird-details {
+    &-container {
     display: grid;
-    grid-template-areas: 
-        "image" "details"
-        "description" "description";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
     background-color:$dark; 
-    padding: 0.85rem 0.125rem;
+    padding: 1rem;
     font-weight: 400;
     width: 100%;
-}
+    overflow: hidden;
+    }
 
-.bird-details--image-wrapper {
-    grid-area: "image";
-    max-width: 100 px;
-    
-}
+    &-name--text {
+    border-bottom: 1px solid $dark-mode-border;
+    padding-bottom: 1rem;
+    }
 
-.bird-details-image {
+    &--image-wrapper {    
+    max-width: 100%;
+    }
+
+    &--wrapper {
+        max-width: 100%;
+    }
+
+    &-image {
     width: 200px;
     height: 155px;
-    border-radius: 0.25rem;
+    border-radius: 0.625rem;
     object-fit: cover;
-}
+    }
+    &-description {
+        grid-column: span 2;
+    }
 
-.bird-details--wrapper {
-    grid-area: "details";
-}
-
-.bird-description {
-    grid-area: "description";
 }

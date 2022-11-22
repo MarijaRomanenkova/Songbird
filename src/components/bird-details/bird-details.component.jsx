@@ -8,7 +8,7 @@ const BirdDetails = ( chosenBird  ) => {
           <img className= 'bird-details-image' src={chosenBird.image} alt={`${chosenBird.name}`} />
         </div>
         <div className='bird-details--wrapper'>
-          <h3>{chosenBird.name}</h3>
+          <h2 className='bird-details-name--text'>{chosenBird.name}</h2>
           <h5>{chosenBird.species}</h5>
           <AudioPlayer 
                     layout="horizontal-reverse" 
@@ -20,7 +20,7 @@ const BirdDetails = ( chosenBird  ) => {
                     customVolumeControls={[]} 
                 />
         </div>
-        <div className='bird-description'>{chosenBird.description}</div>       
+        <div className='bird-details-description'>{chosenBird.description}</div>       
       </div>
     )
 }
