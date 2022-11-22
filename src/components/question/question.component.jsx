@@ -24,6 +24,7 @@ const Question = () => {
                 <AudioPlayer 
                     layout="horizontal-reverse" 
                     src={currentBird.audio}
+                    autoPlay={false}
                     autoPlayAfterSrcChange={false}          
                     showJumpControls={false}
                     showFilledProgress={true}

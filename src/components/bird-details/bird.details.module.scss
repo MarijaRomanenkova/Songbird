@@ -24,20 +24,13 @@
         margin: 0px;
         }
 
-    &-image-wrapper {    
-    max-width: auto;
-    }
-
-    &-wrapper {
-        width: auto;
-    }
-
     &-image {
-    max-width: 200px;
-    max-height: 155px;
-    border-radius: 0.625rem;
-    object-fit: cover;
-    }
+        width: 200px;
+        height: 155px;
+        border-radius: 0.625rem;
+        object-fit: cover;
+        }
+
     &-description {
         grid-column: span 2;
         font-weight: 600;

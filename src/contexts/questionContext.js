@@ -68,6 +68,7 @@ const reducer = (state, action) => {
           return {
             ...state,
             currentBirdId: currentId(),
+            chosenBirdId:setCorrectAnswer(false),
             currentCategoryIndex: state.currentCategoryIndex +1,
             isCorrectAnswer: setCorrectAnswer(false),
             clicks: setToZero(),

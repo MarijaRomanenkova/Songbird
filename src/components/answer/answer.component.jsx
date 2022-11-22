@@ -1,5 +1,6 @@
 import {  useContext} from 'react';
 import { QuestionContext } from '../../contexts/questionContext';
+import useSound from 'use-sound';
 import BirdDetails from '../bird-details/bird-details.component';
 
 const Answer = () => { 

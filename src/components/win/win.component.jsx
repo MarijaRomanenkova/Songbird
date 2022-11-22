@@ -17,8 +17,9 @@ const Win = () => {
             <div className={ isWin ? 'win-container' : 'hidden'}>
                 <Confetti width={width} height={height} />
                 <h1 className="win-title">Поздравляем!</h1> 
-                <h5 className="win-text">Вы прошли викторину и набрали {score} из 30 возможных баллов</h5>                
-                <button className="win-btn" type="button" onClick={()=> dispatch({type:"NEW_GAME"})}>
+                <h5 className="win-text">Вы прошли викторину и набрали {score} из 30 возможных баллов</h5> 
+                <h5 className={ score < 29 ? "win-text" : "hidden"} >Попробуете набрать больше? </h5>                   
+                <button className={ score < 29 ? "win-btn" : "hidden"}  type="button" onClick={()=> dispatch({type:"NEW_GAME"})}>
                 Попробовать еще раз!
                 </button>
             </div>
