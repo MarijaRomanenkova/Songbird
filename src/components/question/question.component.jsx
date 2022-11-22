@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { QuestionContext } from '../../contexts/questionContext';
 import mockUp from '../../assets/bird-mock-up.jpg'
-
 import AudioPlayer from "react-h5-audio-player";   
 
 
@@ -10,8 +9,6 @@ const Question = () => {
     const currentCategory = questionState.birdsData[questionState.currentCategoryIndex];   
     const currentBird = currentCategory[questionState.currentBirdId];  
     const isWin = questionState.win;
-
-    console.log('used Ids' , questionState.usedBirdsId);
      
     const mystery = '******'
     return ( 

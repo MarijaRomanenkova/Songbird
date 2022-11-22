@@ -45,7 +45,6 @@ const setScore = (prevScore, clicks) => {
   } else {
     return prevScore ;    
   } 
-  
 }
 
 const initialState = {
