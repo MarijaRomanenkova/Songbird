@@ -14,7 +14,7 @@ const Question = () => {
         <div className={!isWin ? 'question-container' : 'hidden'}>            
             <img 
                 className= 'question-image'
-                src={questionState.isCorrectAnswer ? currentBird.image : mockUp} alt={`${currentBird.name}`} />
+                src={questionState.isCorrectAnswer ? currentBird.image : mockUp} alt={currentBird.name} />
             <div className = 'question-box'>
                 <h1 className = 'question-title'>{
                     questionState.isCorrectAnswer === false ? mystery : currentBird.name }
