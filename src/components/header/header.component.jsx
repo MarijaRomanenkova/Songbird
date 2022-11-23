@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext} from "react";
 import { QuestionContext } from '../../contexts/questionContext';
 import logo from '../../assets/logo.svg'
 
 const Header = () => {
-    const [questionState, dispatch] = useContext(QuestionContext); 
+    const [questionState] = useContext(QuestionContext); 
     const score = questionState.score
     return (
         <div className='header-container'>
