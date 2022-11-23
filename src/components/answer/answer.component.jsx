@@ -24,20 +24,21 @@ const Answer = () => {
         }        
     }
 
+    const birdsAnswers = currentBirds.map((bird) =>
+        <li
+            className='bird-item'
+            key={bird.id}
+            value={bird.id}
+            onClick={chooseBird}                                                                                           
+            > 
+                { bird.name}     
+        </li>                     
+    ) 
+
     return (
         <div className= {!isWin ? 'answer-container' : 'hidden'}>
             <ul className="birds-list-container">
-                {currentBirds.map((bird) =>
-                    (<li
-                        className='bird-item'
-                        key={bird.id}
-                        value={bird.id}
-                        onClick={chooseBird}                                                                                           
-                        > 
-                            { bird.name}     
-                    </li> 
-                    )                    
-                )}                
+                {birdsAnswers}              
             </ul> 
             { chosenBird ?
                 <BirdDetails 
