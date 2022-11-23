@@ -49,8 +49,9 @@ const Answer = () => {
                     species={chosenBird.species}
                 /> :                   
                 <div className="bird-details--dummy">
-                <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>
-                <h4 className="bird-details--dummy-text">Выберите птицу из списка</h4></div>
+                    <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>
+                    <h4 className="bird-details--dummy-text">Выберите птицу из списка</h4>
+                </div>
             }  
         </div>
     )
