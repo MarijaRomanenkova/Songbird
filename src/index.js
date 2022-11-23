@@ -12,4 +12,3 @@ root.render(
     </QuestionProvider>   
   </React.StrictMode>
 );
-

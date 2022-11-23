@@ -12,20 +12,17 @@
         @include tablet {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            grid-template-columns: 1fr 1fr ;
-        }
+            grid-template-columns: 1fr 1fr;
+            }
         @include mobile {
             display: none;
-        }
-    
-   
+        }   
     .category {  
         text-align: center; 
         padding: 0.5rem 1.56rem;
         margin:0px;
         overflow: hidden;
-        transition: 0.3s ease;   
-
+        transition: 0.3s ease;
         &:first-child {
             border-top-left-radius: 0.313rem;
             border-bottom-left-radius: 0.313rem;
@@ -36,18 +33,15 @@
             border-bottom-right-radius: 0.313rem;
             padding-right: 1.56rem;
         }
-    }
-
-    .category-active {
-        @extend .category;
-        background-color: $teal;        
-    }
-
+        &-active {
+            @extend .category;
+            background-color: $teal;        
+        }
+    }    
     .categories-text {
         padding: 0px;
         margin: 0px;
         font-size: 0.9375rem;
-        font-weight: 600;
-        
+        font-weight: 600;        
     }
 }

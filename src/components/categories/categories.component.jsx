@@ -13,10 +13,6 @@ const Categories = () => {
         <div className={ level === 4 ? 'category-active' : 'category'}><p className='categories-text'>Хищные птицы</p></div>
         <div className={ level === 5 ? 'category-active' : 'category'}><p className='categories-text'>Mорские птицы</p></div>
       </div>
-      
-        
     )
 }
-
-
 export default Categories;

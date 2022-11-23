@@ -1,9 +1,6 @@
 import { useContext, Fragment } from "react";
 import { QuestionContext } from '../../contexts/questionContext';
-import React from 'react'
-
 import Confetti from 'react-confetti';
-
 
 const Win = () => {
     const [questionState, dispatch] = useContext(QuestionContext);
@@ -26,5 +23,4 @@ const Win = () => {
         </Fragment>
     )
 }
-
 export default Win;

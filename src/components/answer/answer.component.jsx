@@ -23,7 +23,7 @@ const Answer = () => {
             playIncorrect();          
         }        
     }
-   
+
     return (
         <div className= {!isWin ? 'answer-container' : 'hidden'}>
             <ul className="birds-list-container">
@@ -41,18 +41,17 @@ const Answer = () => {
             </ul> 
             { chosenBird ?
                 <BirdDetails 
-                name ={chosenBird.name}
-                image ={chosenBird.image}
-                description={chosenBird.description}
-                audio={chosenBird.audio}
-                species={chosenBird.species}
-                />
-                :<div className="bird-details--dummy">
-                    <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>
-                    <h4 className="bird-details--dummy-text">Выберите птицу из списка</h4></div>
+                    name ={chosenBird.name}
+                    image ={chosenBird.image}
+                    description={chosenBird.description}
+                    audio={chosenBird.audio}
+                    species={chosenBird.species}
+                /> :                   
+                <div className="bird-details--dummy">
+                <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>
+                <h4 className="bird-details--dummy-text">Выберите птицу из списка</h4></div>
             }  
         </div>
     )
 }
-
 export default Answer;

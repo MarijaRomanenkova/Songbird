@@ -1,7 +1,6 @@
 .hidden {
     display: none;
 }
-
 .win {
     &-container { 
         display: flex;
@@ -18,10 +17,8 @@
         text-align: center;
             @include mobile {
                 padding: 1rem;
-            }
-
+        }
     }
-
     &-title {
         font-size: 4.5rem;
         font-weight: 400;
@@ -31,7 +28,6 @@
                 
             }
     }
-
     &-text {
         font-size: 1.172rem;
         margin-bottom: 1.5rem;
@@ -40,7 +36,6 @@
             font-size: 1.5rem;
         }
     }
-
     &-btn {
         display:inline-block;
         margin: 3rem auto;
@@ -63,8 +58,7 @@
             @include mobile {
                 padding: 1.5rem;
                 font-size: 1.5rem;
-            }
-        
+            }        
         &:focus {
             box-shadow: none;
         }
@@ -72,11 +66,7 @@
             background-color: $green;
         }
     }
-
 }
-
 .hidden {
     display: none
 }
-
-

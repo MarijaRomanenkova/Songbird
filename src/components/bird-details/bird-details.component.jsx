@@ -23,6 +23,5 @@ const BirdDetails = ( chosenBird  ) => {
       </div>
     )
 }
-
 export default BirdDetails;
 

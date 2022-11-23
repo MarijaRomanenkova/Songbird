@@ -7,14 +7,12 @@
     max-width: 100%;
     overflow: hidden;
     margin-bottom: 1.56rem;
-        @include mobile {
-            grid-template-columns: 1fr;
-            grid-template-rows: auto;
-            grid-row-gap: 1.56rem;            
-        }
-    
+    @include mobile {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 1.56rem;            
+    }    
 }
-
 .birds-list-container {  
     list-style-type: disc;
     list-style-position: inside;
@@ -26,54 +24,48 @@
         background-color:$dark; 
         padding: 0.85rem 1.25rem;
         font-weight: 400; 
-            @include mini {
-                font-size: 1.25rem;
-                padding: 1rem;
-            }       
-        
-    }
-    .bird-item:focus {
-        background-color:$dark-mode-border;
-    }
-    .bird-item:hover {
-        background-color:$dark-mode-border;
-    }
-    .bird-item::marker {
-        color: $dark-mode-border;
-        font-size: 1.75rem;        
-    }
-    .bird-item:first-child {
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
-    }
-    .bird-item:last-child {
-        border-bottom-left-radius: 0.25rem;
-        border-bottom-right-radius: 0.25rem;
-        border-bottom: 1px solid $dark-mode-border;
-    }
-
-    .bird-item--correct{
-        @extend .bird-item;
-        &::marker {
-            color: $green;
-            font-size: 1.75rem;     
+        @include mini {
+            font-size: 1.25rem;
+            padding: 1rem;
+        } 
+        &:focus {
+            background-color:$dark-mode-border;
         }
-    }
-    
-    .bird-item--incorrect{
-        @extend .bird-item;
-        &::marker {
-            color: $red;
-            font-size: 1.75rem;     
+        &:hover {
+            background-color:$dark-mode-border;
         }
-    }
-
+        &::marker {
+            color: $dark-mode-border;
+            font-size: 1.75rem;        
+        }
+        &:first-child {
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+        }
+        &:last-child {
+            border-bottom-left-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border-bottom: 1px solid $dark-mode-border;
+        }
+        &--correct{
+            @extend .bird-item;
+            &::marker {
+                color: $green;
+                font-size: 1.75rem;     
+            }
+        }    
+        &--incorrect{
+            @extend .bird-item;
+            &::marker {
+                color: $red;
+                font-size: 1.75rem;     
+            }
+        }      
+    }    
 }
-
 .hidden {
     display: none;
 }
-
 .bird-details--dummy {
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
@@ -85,6 +77,6 @@
     }
     @include mini {
         display: none;
-    }  
-    
+    }
 }
+

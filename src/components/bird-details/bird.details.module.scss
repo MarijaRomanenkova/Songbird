@@ -14,29 +14,25 @@
             display:none;
         }
     }
-
     &-name-text {
     border-bottom: 1px solid $dark-mode-border;
     padding: 0rem 0rem 1rem ;
-    margin: 0px 0px 0px 0.5rem;        
-   
+    margin: 0px 0px 0px 0.5rem;     
     }
     &-species-text {
         @extend .bird-details-name-text;
         padding: 0.25rem 0rem 0rem ;         
     }
-
     &-image {
         width: 200px;
         height: 155px;
         border-radius: 0.625rem;
         object-fit: cover;            
         }
-
     &-description {
         grid-column: span 2;
         font-weight: 600;
         max-width: auto;
     }
-
 }
+

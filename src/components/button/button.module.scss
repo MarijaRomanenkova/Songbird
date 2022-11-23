@@ -20,9 +20,6 @@
         padding: 1.25rem;
     }  
 }
-
-
-
 .btn {
     @extend .disabled;
     background-color: $green;
@@ -35,7 +32,6 @@
         background-color: $teal;
     }
 }
-
 .hidden {
     display: none;
 }
