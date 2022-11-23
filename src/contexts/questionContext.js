@@ -1,7 +1,5 @@
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { createContext, useReducer } from "react";
-import birdsData from '../data'
-
+import birdsData from '../data';
 export const QuestionContext = createContext();
 
 
@@ -27,7 +25,6 @@ const setWin = (bool = false) => {
 const setToZero = () => {
   return 0;
 }
-
 
 
 const setScore = (prevScore, clicks) => {
@@ -71,14 +68,16 @@ const reducer = (state, action) => {
             currentCategoryIndex: state.currentCategoryIndex +1,
             isCorrectAnswer: setCorrectAnswer(false),
             clicks: setToZero(),
-            level: state.level + 1
+            level: state.level + 1,
+            
       }
       
       case 'WIN' : 
         if(state.correctAnswers > 4 ) {
           return {
             ...state,
-            win: setWin(true),            
+            win: setWin(true), 
+                   
           }
         } else {
           return {
@@ -88,6 +87,7 @@ const reducer = (state, action) => {
             correctAnswers: state.correctAnswers +1 ,                   
             win: setWin(false), 
             score: setScore(state.score, state.clicks),
+            
             };
         }
 
@@ -97,6 +97,7 @@ const reducer = (state, action) => {
             clicks: state.clicks +1 , 
             chosenBirdId: setChosenBirdId(action.payload),
             win: setWin(false),
+            
          }
     
       case 'NEW_GAME':
@@ -111,6 +112,7 @@ const reducer = (state, action) => {
           isCorrectAnswer: setCorrectAnswer(false),          
           win: setWin(false),
           level: setToZero(),
+           
         }
 
       default:

@@ -1,20 +1,21 @@
+@import '../src/scss-source/mixins.scss';
+
 .App-container {
-    max-width: 960px;
-    max-width: 960px;
-    padding: 0 5 rem;
-    margin: 0 auto;
-   
-    @media (max-width: 992px) {
-        max-width: 960px;
-    }
-   
-    @media (max-width: 768px) {
-        max-width: 720px;
-    } 
-    
-    @media (max-width: 576px) {
-        max-width: 540px;
-    }
+    max-width: 960px;    
+    padding: 0rem 1rem;
+    margin: 0rem auto;   
+        @include tablet {
+            max-width: 960px;
+        }
+        
+        @include mobile  {
+            max-width: 720px;
+            
+        } 
+        
+        @include mini {
+            max-width: 540px;
+        }
 }
 
 

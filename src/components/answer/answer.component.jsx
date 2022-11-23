@@ -1,4 +1,4 @@
-import {  useContext} from 'react';
+import {  useContext , useEffect} from 'react';
 import { QuestionContext } from '../../contexts/questionContext';
 import useSound from 'use-sound';
 import correct from '../../assets/sounds/correct.ogg';
@@ -14,28 +14,31 @@ const Answer = () => {
     const isWin = questionState.win;  
     const [playCorrect] = useSound(correct);
     const [playIncorrect] = useSound(incorrect);
-
-    const chooseBird = (event) => {         
+    
+  
+    const chooseBird = (event) => { 
         dispatch({ type: 'CHOOSE', payload: event.target.value })
         if (currentBird.id === event.target.value) {
-            dispatch({ type: 'WIN', payload: event.target.value }); 
-            
+            dispatch({ type: 'WIN', payload: event.target.value });             
             playCorrect();
+              
+
         } else {
-            
-            playIncorrect();
-        }
-        
+            playIncorrect(); 
+                                
+        }        
     }
+
+   
     return (
         <div className= {!isWin ? 'answer-container' : 'hidden'}>
             <ul className="birds-list-container">
-                {currentBirds.map((bird) =>
+                {currentBirds.map((bird, index) =>
                     (<li
-                        className="bird-item"
+                        className='bird-item' 
                         key={bird.id} 
                         value={bird.id}
-                        onClick={chooseBird}                                               
+                        onClick={chooseBird}                                                                                           
                         > 
                             { bird.name}     
                     </li> 

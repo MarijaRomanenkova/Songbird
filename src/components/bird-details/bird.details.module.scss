@@ -10,25 +10,27 @@
     font-weight: 400;
     width: auto;
     overflow: hidden;
+        @include mini {
+            display:none;
+        }
     }
 
     &-name-text {
     border-bottom: 1px solid $dark-mode-border;
-    padding: 0rem 0rem 1rem 0rem;
-    margin: 0px;
+    padding: 0rem 0rem 1rem ;
+    margin: 0px 0px 0px 0.5rem;        
    
     }
     &-species-text {
-        border-bottom: 1px solid $dark-mode-border;
-        padding: 0.25rem 0rem;
-        margin: 0px;
-        }
+        @extend .bird-details-name-text;
+        padding: 0.25rem 0rem 0rem ;         
+    }
 
     &-image {
         width: 200px;
         height: 155px;
         border-radius: 0.625rem;
-        object-fit: cover;
+        object-fit: cover;            
         }
 
     &-description {

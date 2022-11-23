@@ -9,6 +9,14 @@
     background-color: $green;    
     padding: 0px;
     margin-bottom: 1.56rem;
+        @include tablet {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr ;
+        }
+        @include mobile {
+            display: none;
+        }
     
    
     .category {  
