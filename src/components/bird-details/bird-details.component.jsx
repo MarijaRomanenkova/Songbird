@@ -25,3 +25,4 @@ const BirdDetails = ( chosenBird  ) => {
 }
 export default BirdDetails;
 
+
