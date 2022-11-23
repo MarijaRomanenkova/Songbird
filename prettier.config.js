@@ -1,3 +1,5 @@
+const { StrictMode } = require("react");
+
 module.exports = {
     printWidth: 80,
     singleQuote: true,
@@ -6,6 +8,7 @@ module.exports = {
     jsxBracketSameLine: false,
     tabWidth: 2,
     semi: true,
+    css: 'strict',
+    endOfLine: 'lf',
   };
 
-  
