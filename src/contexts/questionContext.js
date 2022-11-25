@@ -26,18 +26,17 @@ const setToZero = () => {
   return 0;
 };
 
-const setScore = (prevScore, clicks) => {
-  let score = 0;
-  if (clicks === 0) {
-    return prevScore + score + 5;
-  } else if (clicks === 1) {
-    return prevScore + score + 4;
+const setScore = (prevScore, clicks) => {  
+  if (clicks === 1) {
+    return prevScore + 5;
   } else if (clicks === 2) {
-    return prevScore + score + 3;
+    return prevScore + 4;
   } else if (clicks === 3) {
-    return prevScore + score + 2;
+    return prevScore + 3;
   } else if (clicks === 4) {
-    return prevScore + score + 1;
+    return prevScore + 2;
+  } else if (clicks === 5) {
+    return prevScore + 1;
   } else {
     return prevScore;
   }
@@ -67,12 +66,14 @@ const reducer = (state, action) => {
         isCorrectAnswer: setCorrectAnswer(false),
         clicks: setToZero(),
         level: state.level + 1,
+        win: setWin(false),
       };
 
     case 'WIN':
       if (state.correctAnswers > 4) {
         return {
           ...state,
+          score: setScore(state.score, state.clicks),
           win: setWin(true),
         };
       } else {
@@ -104,7 +105,7 @@ const reducer = (state, action) => {
         score: setToZero(),
         correctAnswers: setToZero(),
         isCorrectAnswer: setCorrectAnswer(false),
-        win: setWin(false),
+        win: setWin(),
         level: setToZero(),
       };
     default:
