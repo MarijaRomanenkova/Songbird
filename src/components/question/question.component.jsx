@@ -6,7 +6,7 @@ import AudioPlayer from "react-h5-audio-player";
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
     const currentCategory = questionState.birdsData[questionState.currentCategoryIndex];   
-    const currentBird = currentCategory[questionState.currentBirdId];  
+    const currentBird = currentCategory[questionState.currentBirdId] || {};  
     const isWin = questionState.win;     
     const mystery = '******';
     

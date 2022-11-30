@@ -1,4 +1,7 @@
-.answer-container {    
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.Answer__Container {    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content(400px);
@@ -13,12 +16,12 @@
         grid-row-gap: 1.56rem;            
     }    
 }
-.birds-list-container {  
+.Birds_List__Container {  
     list-style-type: disc;
     list-style-position: inside;
     padding: 0px; 
     margin: 0px;  
-    .bird-item {
+    .BirdsList_Item {
         border: 1px solid $dark-mode-border;
         border-bottom: none;
         background-color:$dark; 
@@ -47,15 +50,15 @@
             border-bottom-right-radius: 0.25rem;
             border-bottom: 1px solid $dark-mode-border;
         }
-        &--correct{
-            @extend .bird-item;
+        &__correct{
+            @extend .BirdsList_Item ;
             &::marker {
                 color: $green;
                 font-size: 1.75rem;     
             }
         }    
-        &--incorrect{
-            @extend .bird-item;
+        &__incorrect{
+            @extend .BirdsList_Item ;
             &::marker {
                 color: $red;
                 font-size: 1.75rem;     
@@ -63,16 +66,16 @@
         }      
     }    
 }
-.hidden {
+.Hidden {
     display: none;
 }
-.bird-details--dummy {
+.Bird_Details__Dummy {
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
     background-color:$dark; 
     padding: 1rem;    
     font-weight: 400; 
-    &-text {
+    &__Text {
         display:block;
     }
     @include mini {
@@ -80,7 +83,7 @@
     }
 }
 
-.disabled {
+.Disabled {
     display:inline-block;
     margin-bottom: 2rem;
     color: $white;    
@@ -92,7 +95,7 @@
     background-color: $dark;
     box-shadow: none;
     width: 100%;
-    cursor: pointer;
+    cursor: not-allowed;
     line-height: 22.5 px;    
     padding: 6px 12px;
     text-align: center;
@@ -102,8 +105,8 @@
         padding: 1.25rem;
     }  
 }
-.btn {
-    @extend .disabled;
+.Btn {
+    @extend .Disabled;
     background-color: $green;
     transition: 0.3s ease;      
     -webkit-appearance: button;

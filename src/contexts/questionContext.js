@@ -2,6 +2,8 @@ import { createContext, useReducer } from 'react';
 import birdsData from '../data';
 export const QuestionContext = createContext();
 
+
+
 const currentId = () => {
   const maximum = 6;
   const minimum = 0;
@@ -46,14 +48,15 @@ const initialState = {
   birdsData,
   currentCategoryIndex: 0,
   currentBirdId: currentId(),
-  chosenBirdId: setChosenBirdId(),
+  chosenBirdId: setChosenBirdId(null),
   clicks: 0,
   score: 0,
   correctAnswers: 0,
-  isCorrectAnswer: setCorrectAnswer(),
+  isCorrectAnswer: setCorrectAnswer(false),
   level: 0,
-  win: setWin(),
+  win: setWin(false),
 };
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -74,7 +77,7 @@ const reducer = (state, action) => {
         return {
           ...state,
           score: setScore(state.score, state.clicks),
-          win: setWin(true),
+          win: setWin(true),          
         };
       } else {
         return {
@@ -97,16 +100,16 @@ const reducer = (state, action) => {
 
     case 'NEW_GAME':
       return {
-        ...state,
-        currentCategoryIndex: setToZero(),
+        birdsData,
+        currentCategoryIndex: 0,
         currentBirdId: currentId(),
-        chosenBirdId: setToZero(),
-        clicks: setToZero(),
-        score: setToZero(),
-        correctAnswers: setToZero(),
+        chosenBirdId: setChosenBirdId(null),
+        clicks: 0,
+        score: 0,
+        correctAnswers: 0,
         isCorrectAnswer: setCorrectAnswer(false),
-        win: setWin(),
-        level: setToZero(),
+        level: 0,
+        win: setWin(false),
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);

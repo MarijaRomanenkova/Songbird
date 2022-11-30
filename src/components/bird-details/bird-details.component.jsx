@@ -1,14 +1,14 @@
 import AudioPlayer from "react-h5-audio-player";  
+import styles from 'components/bird-details/bird.details.module.scss'
 
 const BirdDetails = ( chosenBird  ) => {    
     return (
-      <div className='bird-details-container'>
-          <img className= 'bird-details-image' src={chosenBird.image} alt={`${chosenBird.name}`} />
+      <div className={styles.BirdDetails__container}>
+          <img className= {styles.BirdDetails_Image} src={chosenBird.image} alt={`${chosenBird.name}`} />
         <div>
-          <h2 className='bird-details-name-text'>{chosenBird.name}</h2>
-          <h4 className='bird-details-species-text'>{chosenBird.species}</h4>
-          <AudioPlayer 
-            className='bird-details-audio'
+          <h2 className={styles.BirdDetails__BirdName_Text}>{chosenBird.name}</h2>
+          <h4 className={styles.BirdDetails__BirdSpecies_Text}>{chosenBird.species}</h4>
+          <AudioPlayer             
             layout="horizontal-reverse" 
             src={chosenBird.audio}
             autoPlay={false}
@@ -19,7 +19,7 @@ const BirdDetails = ( chosenBird  ) => {
             customVolumeControls={[]} 
           />
         </div>
-        <div className='bird-details-description'>{chosenBird.description}</div>       
+        <div className={styles.BirdDetails_Description}>{chosenBird.description}</div>       
       </div>
     )
 }

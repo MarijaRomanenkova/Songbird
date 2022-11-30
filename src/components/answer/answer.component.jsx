@@ -1,37 +1,48 @@
 import {  Fragment, useContext, useState } from 'react';
-import { QuestionContext } from '../../contexts/questionContext';
+import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
-import correct from '../../assets/sounds/correct.ogg';
-import incorrect from '../../assets/sounds/incorrect.ogg';
-import BirdDetails from '../bird-details/bird-details.component'; 
+
+import correct from 'assets/sounds/correct.ogg';
+import incorrect from 'assets/sounds/incorrect.ogg';
+import BirdDetails from 'components/bird-details/bird-details.component'; 
+import styles from './answer.module.scss';
+
 
 const Answer = () => { 
     const [questionState, dispatch] = useContext(QuestionContext);
     const currentBirds = questionState.birdsData[questionState.currentCategoryIndex];
     const nextBirds = questionState.birdsData[questionState.currentCategoryIndex +1];
     const currentBird = currentBirds[questionState.currentBirdId];
-    const chosenBird =  currentBirds[questionState.chosenBirdId ];  
+    const chosenBird =  currentBirds[questionState.chosenBirdId ];
     const isWin = questionState.win;  
     const isButtonActive = questionState.isCorrectAnswer;
+    
     const [playCorrect] = useSound(correct);
     const [playIncorrect] = useSound(incorrect);
-
+    console.log('clicks', questionState.clicks)
+    
     const initialBirdList = currentBirds.map(bird => ({
         ...bird,
-        birdClass: 'bird-item'        
+        birdClass: styles.BirdsList_Item ,
+        isAlreadyChosen: false,
+            
     })) 
 
+    
+
     const [birdsAnswers, setBirdsAnswers] = useState( initialBirdList )
+    
     
     const chooseBird = (event) => { 
         dispatch({ type: 'CHOOSE', payload: event.target.value })        
         if (currentBird.id === event.target.value) {
             dispatch({ type: 'WIN', payload: event.target.value });             
             playCorrect();  
-            changeBirdsAnswers(event.target.value, 'bird-item--correct');           
+            changeBirdsAnswers(event.target.value, styles.BirdsList_Item__correct); 
+                   
         } else {
-            playIncorrect();              
-            changeBirdsAnswers(event.target.value, 'bird-item--incorrect');           
+            playIncorrect();                   
+            changeBirdsAnswers(event.target.value, styles.BirdsList_Item__incorrect);           
         }              
     }
 
@@ -40,24 +51,30 @@ const Answer = () => {
             birdsAnswers.map (
                 (bird) => {
                     if(bird.id === id) {
-                        return { ...bird, birdClass: newClass } 
+                        return { ...bird, birdClass: newClass, isAlreadyChosen: true } 
                     } else {
-                        return { ...bird, birdClass: 'bird-item'  } 
+                        return { ...bird } 
                     }                                    
                 }
             )
         )
     }
 
-    const handleNexButtonClick = () => {
+    const handleNextButtonClick = () => {
         dispatch({type:"NEXT_LEVEL"});
-        if(isWin === true) {
+        if(isWin === true) {            
+            setBirdsAnswers(currentBirds.map(bird => ({
+                ...bird,
+                birdClass: styles.BirdsList_Item,
+                isAlreadyChosen: false       
+                })
+            )) 
             dispatch({ type: 'NEW_GAME' }); 
-            setBirdsAnswers(initialBirdList)
         }
         setBirdsAnswers(nextBirds.map(bird => ({
             ...bird,
-            birdClass: 'bird-item'        
+            birdClass: styles.BirdsList_Item,
+            isAlreadyChosen: false                  
             })
         ))        
     }
@@ -67,15 +84,18 @@ const Answer = () => {
             className={bird.birdClass}
             key={bird.id}
             value={bird.id}
-            onClick={chooseBird} 
+            onClick={bird.isAlreadyChosen ? null : !isButtonActive? chooseBird : null} 
             > {bird.name}
         </li>                                                                  
         )
     )
+
+    
+
     return (
         <Fragment>
-            <div className= {!isWin ? 'answer-container' : 'hidden'}>
-                <ul className="birds-list-container">
+            <div className= {!isWin ? styles.Answer__Container : styles.Hidden }>
+                <ul className={styles.Birds_List__Container}>
                     {birdsList}              
                 </ul> 
                 { chosenBird ?
@@ -86,17 +106,17 @@ const Answer = () => {
                         audio={chosenBird.audio}
                         species={chosenBird.species}
                     /> :                   
-                    <div className="bird-details--dummy">
-                        <h4 className="bird-details--dummy-text">Послушайте плеер.</h4>
-                        <h4 className="bird-details--dummy-text">Выберите птицу из списка</h4>
+                    <div className={styles.Bird_Details__Dummy}>
+                        <h4 className={styles.Bird_Details__Dummy__Text}>Послушайте плеер.</h4>
+                        <h4 className={styles.Bird_Details__Dummy__Text}>Выберите птицу из списка</h4>
                     </div>
                 }                  
             </div>
             <button
                 type="button"
                 disabled={!isButtonActive}
-                className={isWin ? 'hidden' : isButtonActive ? "btn" : "disabled"}
-                onClick={handleNexButtonClick}
+                className={isWin ? styles.Hidden : isButtonActive ? styles.Btn : styles.Disabled }
+                onClick={handleNextButtonClick}
             > Next Level
             </button>
         </Fragment>

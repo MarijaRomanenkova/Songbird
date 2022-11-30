@@ -1,5 +1,8 @@
-.bird-details {
-    &-container {
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.BirdDetails {
+    &__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -14,22 +17,22 @@
             display:none;
         }
     }
-    &-name-text {
+    &__BirdName_Text {
     border-bottom: 1px solid $dark-mode-border;
     padding: 0rem 0rem 1rem ;
     margin: 0px 0px 0px 0.5rem;     
     }
-    &-species-text {
-        @extend .bird-details-name-text;
+    &__BirdSpecies_Text {
+        @extend .BirdDetails__BirdName_Text;
         padding: 0.25rem 0rem 0rem ;         
     }
-    &-image {
+    &_Image {
         width: 200px;
         height: 155px;
         border-radius: 0.625rem;
         object-fit: cover;            
         }
-    &-description {
+    &_Description {
         grid-column: span 2;
         font-weight: 600;
         max-width: auto;
