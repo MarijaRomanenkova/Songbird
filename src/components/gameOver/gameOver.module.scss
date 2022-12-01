@@ -1,11 +1,11 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.hidden {
+.Hidden {
     display: none;
 }
-.win {
-    &-container { 
+.GameOver{
+    &__Container  { 
         display: flex;
         margin: 0rem auto ;
         flex-direction: column;
@@ -22,7 +22,7 @@
                 padding: 1rem;
         }
     }
-    &-title {
+    &__Title {
         font-size: 4.5rem;
         font-weight: 400;
         margin-bottom: 0.5rem;
@@ -31,7 +31,7 @@
                 
             }
     }
-    &-text {
+    &__Text {
         font-size: 1.172rem;
         margin-bottom: 1.5rem;
         font-weight: 400;
@@ -39,7 +39,7 @@
             font-size: 1.5rem;
         }
     }
-    &-btn {
+    &__Btn {
         display:inline-block;
         margin: 3rem auto;
         color: $white;    
@@ -70,7 +70,5 @@
         }
     }
 }
-.hidden {
-    display: none
-}
+
 

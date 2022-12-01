@@ -11,15 +11,12 @@ import styles from './answer.module.scss';
 const Answer = () => { 
     const [questionState, dispatch] = useContext(QuestionContext); 
     const thisLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex];
-    const nextLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex +1]; 
-    
-    const currentBird = thisLevelQuestionsArray[questionState.currentBirdId];
-    const currentBirdId = currentBird.id
-    
-
-    const chosenBird =  thisLevelQuestionsArray[questionState.chosenBirdId ];
-    const isWin = questionState.win;  
-    const isButtonActive = questionState.isCorrectAnswer;
+    const nextLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex +1];
+    const currentQuestionObject = thisLevelQuestionsArray[questionState.currentBirdId];
+    const currentQuestionObjectId = currentQuestionObject.id; 
+    const chosenAnswer = thisLevelQuestionsArray[questionState.chosenBirdId ];
+    const gameOver = questionState.win;  
+    const isNextButtonEnabled = questionState.isCorrectAnswer;
     
     const [playCorrect] = useSound(correct);
     const [playIncorrect] = useSound(incorrect);
@@ -39,14 +36,14 @@ const Answer = () => {
     useEffect(() => {
         setBirdsAnswers(initialBirdList)
             
-    }, [currentBird])
+    }, [currentQuestionObject])
     
     
 
     const chooseBird = async (event) => { 
         
         dispatch({ type: 'CHOOSE', payload: event.target.value })        
-        if ( currentBirdId === event.target.value) {
+        if ( currentQuestionObjectId === event.target.value) {
             dispatch({ type: 'WIN', payload: event.target.value });             
             playCorrect();  
             changeBirdsAnswers(event.target.value, styles.BirdsList_Item__correct); 
@@ -73,7 +70,7 @@ const Answer = () => {
 
     const handleNextButtonClick = () => {
         dispatch({type:"NEXT_LEVEL"});
-        if(isWin === true) {            
+        if(gameOver === true) {            
             setBirdsAnswers(thisLevelQuestionsArray.map(bird => ({
                 ...bird,
                 birdClass: styles.BirdsList_Item,
@@ -95,7 +92,7 @@ const Answer = () => {
             className={bird.birdClass}
             key={bird.id}
             value={bird.id}
-            onClick={bird.isAlreadyChosen ? null : !isButtonActive? chooseBird : null} 
+            onClick={bird.isAlreadyChosen ? null : !isNextButtonEnabled? chooseBird : null} 
             > {bird.name}
         </li>                                                                  
         )
@@ -105,17 +102,17 @@ const Answer = () => {
 
     return (
         <Fragment>
-            <div className= {!isWin ? styles.Answer__Container : styles.Hidden }>
+            <div className= {!gameOver ? styles.Answer__Container : styles.Hidden }>
                 <ul className={styles.Birds_List__Container}>
                     {birdsList}              
                 </ul> 
-                { chosenBird ?
+                { chosenAnswer ?
                     <BirdDetails 
-                        name ={chosenBird.name}
-                        image ={chosenBird.image}
-                        description={chosenBird.description}
-                        audio={chosenBird.audio}
-                        species={chosenBird.species}
+                        name ={chosenAnswer.name}
+                        image ={chosenAnswer.image}
+                        description={chosenAnswer.description}
+                        audio={chosenAnswer.audio}
+                        species={chosenAnswer.species}
                     /> :                   
                     <div className={styles.Bird_Details__Dummy}>
                         <h4 className={styles.Bird_Details__Dummy__Text}>Послушайте плеер.</h4>
@@ -125,8 +122,8 @@ const Answer = () => {
             </div>
             <button
                 type="button"
-                disabled={!isButtonActive}
-                className={isWin ? styles.Hidden : isButtonActive ? styles.Btn : styles.Disabled }
+                disabled={!isNextButtonEnabled}
+                className={gameOver ? styles.Hidden : isNextButtonEnabled ? styles.Btn : styles.Disabled }
                 onClick={handleNextButtonClick}
             > Next Level
             </button>
