@@ -64,7 +64,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentBirdId: currentId(),
-        chosenBirdId: setCorrectAnswer(false),
+        chosenBirdId: setChosenBirdId(null),
         currentCategoryIndex: state.currentCategoryIndex + 1,
         isCorrectAnswer: setCorrectAnswer(false),
         clicks: setToZero(),
@@ -76,6 +76,7 @@ const reducer = (state, action) => {
       if (state.correctAnswers > 4) {
         return {
           ...state,
+          chosenBirdId: setChosenBirdId(null),
           score: setScore(state.score, state.clicks),
           win: setWin(true),          
         };

@@ -1,4 +1,4 @@
-import {  Fragment, useContext, useState } from 'react';
+import {  Fragment, useContext, useEffect, useState } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
 
@@ -9,11 +9,15 @@ import styles from './answer.module.scss';
 
 
 const Answer = () => { 
-    const [questionState, dispatch] = useContext(QuestionContext);
-    const currentBirds = questionState.birdsData[questionState.currentCategoryIndex];
-    const nextBirds = questionState.birdsData[questionState.currentCategoryIndex +1];
-    const currentBird = currentBirds[questionState.currentBirdId];
-    const chosenBird =  currentBirds[questionState.chosenBirdId ];
+    const [questionState, dispatch] = useContext(QuestionContext); 
+    const thisLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex];
+    const nextLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex +1]; 
+    
+    const currentBird = thisLevelQuestionsArray[questionState.currentBirdId];
+    const currentBirdId = currentBird.id
+    
+
+    const chosenBird =  thisLevelQuestionsArray[questionState.chosenBirdId ];
     const isWin = questionState.win;  
     const isButtonActive = questionState.isCorrectAnswer;
     
@@ -21,7 +25,7 @@ const Answer = () => {
     const [playIncorrect] = useSound(incorrect);
     console.log('clicks', questionState.clicks)
     
-    const initialBirdList = currentBirds.map(bird => ({
+    const initialBirdList = thisLevelQuestionsArray.map(bird => ({
         ...bird,
         birdClass: styles.BirdsList_Item ,
         isAlreadyChosen: false,
@@ -31,11 +35,18 @@ const Answer = () => {
     
 
     const [birdsAnswers, setBirdsAnswers] = useState( initialBirdList )
+
+    useEffect(() => {
+        setBirdsAnswers(initialBirdList)
+            
+    }, [currentBird])
     
     
-    const chooseBird = (event) => { 
+
+    const chooseBird = async (event) => { 
+        
         dispatch({ type: 'CHOOSE', payload: event.target.value })        
-        if (currentBird.id === event.target.value) {
+        if ( currentBirdId === event.target.value) {
             dispatch({ type: 'WIN', payload: event.target.value });             
             playCorrect();  
             changeBirdsAnswers(event.target.value, styles.BirdsList_Item__correct); 
@@ -63,7 +74,7 @@ const Answer = () => {
     const handleNextButtonClick = () => {
         dispatch({type:"NEXT_LEVEL"});
         if(isWin === true) {            
-            setBirdsAnswers(currentBirds.map(bird => ({
+            setBirdsAnswers(thisLevelQuestionsArray.map(bird => ({
                 ...bird,
                 birdClass: styles.BirdsList_Item,
                 isAlreadyChosen: false       
@@ -71,7 +82,7 @@ const Answer = () => {
             )) 
             dispatch({ type: 'NEW_GAME' }); 
         }
-        setBirdsAnswers(nextBirds.map(bird => ({
+        setBirdsAnswers(nextLevelQuestionsArray.map(bird => ({
             ...bird,
             birdClass: styles.BirdsList_Item,
             isAlreadyChosen: false                  

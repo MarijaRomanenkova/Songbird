@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { QuestionContext } from '../../contexts/questionContext';
-import mockUp from '../../assets/bird-mock-up.jpg'
+import { QuestionContext } from 'contexts/questionContext';
 import AudioPlayer from "react-h5-audio-player";  
+import mockUp from '../../assets/bird-mock-up.jpg'
+
 
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
