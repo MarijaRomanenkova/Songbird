@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { QuestionContext } from '../../contexts/questionContext';
+import { QuestionContext } from 'contexts/questionContext';
+import styles from 'components/categories/categories.module.scss'
 
 const Categories = () => {
   const [questionState] = useContext(QuestionContext);
   const level = questionState.level;
+  const categoriesArray = ['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Mорские птицы']
+  const CategoriesList = categoriesArray.map((category, index) => (
+    <div key={index} className={index === level ? styles.Category_Active : styles.Category}><p className={styles.Categories_Text}>{category}</p> </div>))
+
     return (
-      <div className='categories-container'>        
-        <div className={ level === 0 ? 'category-active' : 'category'}><p className='categories-text'>Разминка</p></div>
-        <div className={ level === 1 ? 'category-active' : 'category'}><p className='categories-text'>Воробьиные</p></div>
-        <div className={ level === 2 ? 'category-active' : 'category'}><p className='categories-text'>Лесные птицы</p></div>
-        <div className={ level === 3 ? 'category-active' : 'category'}><p className='categories-text'>Певчие птицы</p></div>
-        <div className={ level === 4 ? 'category-active' : 'category'}><p className='categories-text'>Хищные птицы</p></div>
-        <div className={ level === 5 ? 'category-active' : 'category'}><p className='categories-text'>Mорские птицы</p></div>
+      <div className={styles.Categories__Container }>        
+        {CategoriesList}
       </div>
     )
 }
