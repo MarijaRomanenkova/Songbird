@@ -1,28 +1,28 @@
 import { useContext } from "react";
 import { QuestionContext } from 'contexts/questionContext';
 import AudioPlayer from "react-h5-audio-player";  
-import mockUp from 'assets/bird-mock-up.jpg'
+import MockUp from 'assets/bird-mock-up.jpg'
 
 
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
-    const currentCategory = questionState.birdsData[questionState.currentCategoryIndex];   
-    const currentBird = currentCategory[questionState.currentBirdId] || {};  
+    const level = questionState.birdsData[questionState.level];   
+    const question = level[questionState.questionId] || {};  
     const gameOver = questionState.win;     
-    const mystery = '******';
+    const HIDDEN__ANSWER = '******';
     
     return ( 
         <div className={!gameOver ? 'question-container' : 'hidden'}>            
             <img 
                 className= 'question-image'
-                src={questionState.isCorrectAnswer ? currentBird.image : mockUp} alt={currentBird.name} />
+                src={questionState.isCorrectAnswer ? question.image : MockUp} alt={question.name} />
             <div className = 'question-box'>
                 <h1 className = 'question-title'>{
-                    questionState.isCorrectAnswer === false ? mystery : currentBird.name }
+                    questionState.isCorrectAnswer === false ? HIDDEN__ANSWER : question.name }
                 </h1>
                 <AudioPlayer 
                     layout="horizontal-reverse" 
-                    src={currentBird.audio}
+                    src={question.audio}
                     autoPlay={false}
                     autoPlayAfterSrcChange={false}          
                     showJumpControls={false}

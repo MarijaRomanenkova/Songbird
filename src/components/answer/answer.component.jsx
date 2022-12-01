@@ -10,13 +10,13 @@ import styles from './answer.module.scss';
 
 const Answer = () => { 
     const [questionState, dispatch] = useContext(QuestionContext); 
-    const thisLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex];
-    const nextLevelQuestionsArray = questionState.birdsData[questionState.currentCategoryIndex +1];
-    const currentQuestionObject = thisLevelQuestionsArray[questionState.currentBirdId];
+    const thisLevelQuestionsArray = questionState.birdsData[questionState.level];
+    const nextLevelQuestionsArray = questionState.birdsData[questionState.level +1];
+    const currentQuestionObject = thisLevelQuestionsArray[questionState.questionId];
     const currentQuestionObjectId = currentQuestionObject.id; 
-    const chosenAnswer = thisLevelQuestionsArray[questionState.chosenBirdId ];
+    const chosenAnswer = thisLevelQuestionsArray[questionState.chosenAnswerId ];
     const gameOver = questionState.win;  
-    const isNextButtonEnabled = questionState.isCorrectAnswer;
+    
     
     const [playCorrect] = useSound(correct);
     const [playIncorrect] = useSound(incorrect);
@@ -27,11 +27,10 @@ const Answer = () => {
         itemClass: styles.AnswersList_Item ,
         isAlreadyChosen: false,
             
-    })) 
-
-    
+    }))     
 
     const [answersListStyles, setAnswersListStyles] = useState( initialAnswersListStyles )
+    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
     useEffect(() => {
         setAnswersListStyles(initialAnswersListStyles)
@@ -41,11 +40,12 @@ const Answer = () => {
     
 
     const chooseAnswer = (event) => {         
-        dispatch({ type: 'CHOOSE', payload: event.target.value })        
+        dispatch({ type: 'CHOOSE', payload: event.target.value -1})        
         if ( currentQuestionObjectId === event.target.value) {
-            dispatch({ type: 'WIN', payload: event.target.value });             
+            dispatch({ type: 'WIN', payload: event.target.value -1});             
             playCorrect();  
-            changeAnswersListStyles(event.target.value, styles.AnswersList_Item__correct);                    
+            changeAnswersListStyles(event.target.value, styles.AnswersList_Item__correct); 
+            setIsNextButtonDisabled(false)                   
         } else {
             playIncorrect();                   
             changeAnswersListStyles(event.target.value, styles.AnswersList_Item__incorrect);           
@@ -67,14 +67,16 @@ const Answer = () => {
     }
 
     const handleNextButtonClick = () => {
-        dispatch({type:"NEXT_LEVEL"});
-        if(gameOver === true) {            
+        setIsNextButtonDisabled(true);
+        dispatch({type:"NEXT_LEVEL"});        
+        if(gameOver === true) {  
+            setIsNextButtonDisabled(true);          
             setAnswersListStyles(thisLevelQuestionsArray.map(item => ({
                 ...item,
                 itemClass: styles.AnswersList_Item,
                 isAlreadyChosen: false       
                 })
-            )) 
+            ))             
             dispatch({ type: 'NEW_GAME' }); 
         }
         setAnswersListStyles(nextLevelQuestionsArray.map(item => ({
@@ -82,7 +84,8 @@ const Answer = () => {
             itemClass: styles.AnswersList_Item,
             isAlreadyChosen: false                  
             })
-        ))        
+        ))
+
     }
 
     const answersList = answersListStyles.map((item) => (  
@@ -90,7 +93,7 @@ const Answer = () => {
             className={item.itemClass}
             key={item.id}
             value={item.id}
-            onClick={item.isAlreadyChosen ? null : !isNextButtonEnabled? chooseAnswer : null} 
+            onClick={item.isAlreadyChosen ? null : isNextButtonDisabled ? chooseAnswer : null} 
             > {item.name}
         </li>                                                                  
         )
@@ -120,8 +123,8 @@ const Answer = () => {
             </div>
             <button
                 type="button"
-                disabled={!isNextButtonEnabled}
-                className={gameOver ? styles.Hidden : isNextButtonEnabled ? styles.Btn : styles.Disabled }
+                disabled={isNextButtonDisabled}
+                className={gameOver ? styles.Hidden : !isNextButtonDisabled ? styles.Btn : styles.Disabled }
                 onClick={handleNextButtonClick}
             > Next Level
             </button>

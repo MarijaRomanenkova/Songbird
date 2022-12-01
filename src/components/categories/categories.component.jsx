@@ -10,7 +10,7 @@ const Categories = () => {
     <div key={index} className={index === level ? styles.Category_Active : styles.Category}><p className={styles.Categories_Text}>{category}</p> </div>))
 
     return (
-      <div className={styles.Categories__Container }>        
+      <div className={styles.Categories__Container}>        
         {CategoriesList}
       </div>
     )

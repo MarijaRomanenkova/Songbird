@@ -4,57 +4,36 @@ export const QuestionContext = createContext();
 
 
 
-const currentId = () => {
+const getQuestionId = () => {
   const maximum = 6;
-  const minimum = 0;
+  const minimum = 1;
   const randomNumber =
     Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
   return randomNumber;
 };
 
-const setChosenBirdId = (a = 0) => {
-  return a - 1;
-};
 
-const setCorrectAnswer = (bool = false) => {
-  return bool;
-};
-
-const setWin = (bool = false) => {
-  return bool;
-};
-
-const setToZero = () => {
-  return 0;
-};
-
-const setScore = (prevScore, clicks) => {  
-  if (clicks === 1) {
-    return prevScore + 5;
-  } else if (clicks === 2) {
-    return prevScore + 4;
-  } else if (clicks === 3) {
-    return prevScore + 3;
-  } else if (clicks === 4) {
-    return prevScore + 2;
-  } else if (clicks === 5) {
-    return prevScore + 1;
-  } else {
-    return prevScore;
+let MAXIMUM__SCORE__PER__LEVEL = 5;
+const setScore = (prevScore, clicks) => {
+  let score = 0;
+  for (let i = clicks; i < MAXIMUM__SCORE__PER__LEVEL +1; i++) {
+    score++
+    
   }
-};
+  return prevScore + score
+}
+
 
 const initialState = {
   birdsData,
-  currentCategoryIndex: 0,
-  currentBirdId: currentId(),
-  chosenBirdId: setChosenBirdId(null),
+  level: 0,
+  questionId: getQuestionId(),
+  chosenAnswerId: null,
   clicks: 0,
   score: 0,
   correctAnswers: 0,
-  isCorrectAnswer: setCorrectAnswer(false),
-  level: 0,
-  win: setWin(false),
+  isCorrectAnswer: false,  
+  win: false,
 };
 
 
@@ -63,30 +42,29 @@ const reducer = (state, action) => {
     case 'NEXT_LEVEL':
       return {
         ...state,
-        currentBirdId: currentId(),
-        chosenBirdId: setChosenBirdId(null),
-        currentCategoryIndex: state.currentCategoryIndex + 1,
-        isCorrectAnswer: setCorrectAnswer(false),
-        clicks: setToZero(),
         level: state.level + 1,
-        win: setWin(false),
+        questionId: getQuestionId(),
+        chosenAnswerId: null,        
+        isCorrectAnswer: false,
+        clicks: 0,        
+        win: false,
       };
 
     case 'WIN':
       if (state.correctAnswers > 4) {
         return {
           ...state,
-          chosenBirdId: setChosenBirdId(null),
           score: setScore(state.score, state.clicks),
-          win: setWin(true),          
+          win: true,  
+          isCorrectAnswer: true,        
         };
       } else {
         return {
           ...state,
-          chosenBirdId: setChosenBirdId(action.payload),
-          isCorrectAnswer: setCorrectAnswer(true),
+          chosenAnswerId: action.payload,
+          isCorrectAnswer: true,
           correctAnswers: state.correctAnswers + 1,
-          win: setWin(false),
+          win: false,
           score: setScore(state.score, state.clicks),
         };
       }
@@ -94,23 +72,22 @@ const reducer = (state, action) => {
     case 'CHOOSE':
       return {
         ...state,
-        clicks: state.clicks + 1,
-        chosenBirdId: setChosenBirdId(action.payload),
-        win: setWin(false),
+        clicks: state.clicks + 1,        
+        chosenAnswerId: action.payload ,
+        win: false,
       };
 
     case 'NEW_GAME':
       return {
-        birdsData,
-        currentCategoryIndex: 0,
-        currentBirdId: currentId(),
-        chosenBirdId: setChosenBirdId(null),
+        birdsData,        
+        questionId: getQuestionId(),
+        chosenAnswerId: null,
         clicks: 0,
         score: 0,
         correctAnswers: 0,
-        isCorrectAnswer: setCorrectAnswer(false),
+        isCorrectAnswer: false,
         level: 0,
-        win: setWin(false),
+        win: false,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
