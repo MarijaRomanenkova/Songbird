@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.Answer__Container {    
+.Answers__Container {    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content(400px);
@@ -16,12 +16,12 @@
         grid-row-gap: 1.56rem;            
     }    
 }
-.Birds_List__Container {  
+.AnswersList__Container {  
     list-style-type: disc;
     list-style-position: inside;
     padding: 0px; 
     margin: 0px;  
-    .BirdsList_Item {
+    .AnswersList_Item {
         border: 1px solid $dark-mode-border;
         border-bottom: none;
         background-color:$dark; 
@@ -51,14 +51,14 @@
             border-bottom: 1px solid $dark-mode-border;
         }
         &__correct{
-            @extend .BirdsList_Item ;
+            @extend .AnswersList_Item ;
             &::marker {
                 color: $green;
                 font-size: 1.75rem;     
             }
         }    
         &__incorrect{
-            @extend .BirdsList_Item ;
+            @extend .AnswersList_Item ;
             &::marker {
                 color: $red;
                 font-size: 1.75rem;     
@@ -69,13 +69,13 @@
 .Hidden {
     display: none;
 }
-.Bird_Details__Dummy {
+.AnswerDetails__Dummy {
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
     background-color:$dark; 
     padding: 1rem;    
     font-weight: 400; 
-    &__Text {
+    &_Text {
         display:block;
     }
     @include mini {

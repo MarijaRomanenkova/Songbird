@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.BirdDetails {
+.AnswerDetails {
     &__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -17,13 +17,13 @@
             display:none;
         }
     }
-    &__BirdName_Text {
+    &__Name_Text {
     border-bottom: 1px solid $dark-mode-border;
     padding: 0rem 0rem 1rem ;
     margin: 0px 0px 0px 0.5rem;     
     }
-    &__BirdSpecies_Text {
-        @extend .BirdDetails__BirdName_Text;
+    &__Species_Text {
+        @extend .AnswerDetails__Name_Text;
         padding: 0.25rem 0rem 0rem ;         
     }
     &_Image {
