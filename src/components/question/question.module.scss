@@ -1,8 +1,8 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.question {
-    &-container {
+.Question {
+    &_Container {
     display: flex;     
     background-color: $dark;
     overflow: hidden;
@@ -11,7 +11,7 @@
     margin-bottom: 1.56rem;
     }
 
-    &-image {
+    &_Image {
         width: 200px;
         height: 155px;
         border-radius: 0.625rem;
@@ -21,7 +21,7 @@
             }
     }
 
-    &-box {
+    &_Box {
         margin-left: 2rem;
         width: 100%;
         @include mini {
@@ -30,7 +30,7 @@
         }
     }
 
-    &-title {        
+    &_Title {        
         padding: 0.5rem 0rem 1.25rem 0rem ;
         margin: 0 0 0 0.5rem;
         border-bottom: 1px solid $dark-mode-border;
@@ -38,7 +38,7 @@
     }
 }
 
-.hidden {
+.Hidden {
     display: none;
 }
 

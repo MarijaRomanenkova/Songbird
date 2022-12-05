@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.Answers__Container {    
+.Answers_Container {    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content(400px);
@@ -16,11 +16,11 @@
         grid-row-gap: 1.56rem;            
     }    
 }
-.AnswersList__Container {  
+.AnswersList_Container {  
     list-style-type: disc;
     list-style-position: inside;
     padding: 0px; 
-    margin: 0px;  
+    margin: auto 0px;  
     .AnswersList_Item {
         border: 1px solid $dark-mode-border;
         border-bottom: none;
@@ -69,7 +69,7 @@
 .Hidden {
     display: none;
 }
-.AnswerDetails__Dummy {
+.AnswerDetails_Dummy {
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
     background-color:$dark; 

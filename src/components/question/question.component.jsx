@@ -2,22 +2,27 @@ import { useContext } from "react";
 import { QuestionContext } from 'contexts/questionContext';
 import AudioPlayer from "react-h5-audio-player";  
 import MockUp from 'assets/bird-mock-up.jpg'
+import styles from 'components/question/question.module.scss'
 
 
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
     const level = questionState.birdsData[questionState.level];   
-    const question = level[questionState.questionId] || {};  
-    const isGameOver = questionState.win;     
+    const question = level[questionState.randomQuestionID] || {};  
+    const isGameOver = questionState.isGameOver;
+    const isCorrectAnswer = questionState.isCorrectAnswer     
     const HIDDEN__ANSWER = '******';
+
+    
     
     return ( 
-        <div className={!isGameOver ? 'question-container' : 'hidden'}>            
+        
+        <div className={!isGameOver ? styles.Question_Container : styles.Hidden}>            
             <img 
-                className= 'question-image'
+                className= {styles.Question_Image}
                 src={questionState.isCorrectAnswer ? question.image : MockUp} alt={question.name} />
-            <div className = 'question-box'>
-                <h1 className = 'question-title'>{
+            <div className = {styles.Question_Box} >
+                <h1 className = {styles.Question_Title}>{
                     questionState.isCorrectAnswer === false ? HIDDEN__ANSWER : question.name }
                 </h1>
                 <AudioPlayer 
@@ -29,7 +34,8 @@ const Question = () => {
                     showFilledProgress={true}
                     volumeControls={true}
                     customAdditionalControls={[]}  
-                    customVolumeControls={[]}                     
+                    customVolumeControls={[]} 
+                    onPause={is}                    
                 />
             </div> 
         </div>

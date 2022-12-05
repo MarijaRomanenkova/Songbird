@@ -1,17 +1,18 @@
-import { useContext} from "react";
-import { QuestionContext } from '../../contexts/questionContext';
+import { useContext} from 'react';
+import { QuestionContext } from 'contexts/questionContext';
 import logo from '../../assets/logo.svg'
+import styles from 'components/header/header.module.scss'
 
 const Header = () => {
     const [questionState] = useContext(QuestionContext); 
     const score = questionState.score
-    const clicks = questionState.clicks
+   
     return (
-        <div className='header-container'>
+        <div className={styles.Header_Container}>
             <div>
-                <img className="logo" src={logo} alt="Logo" />
+                <img className={styles.Logo} src={logo} alt="Logo" />
             </div>
-            <div className='score'><p> Score: {score} Clicks {clicks}</p> </div>
+            <div className={styles.Score}><p> Score: {score}</p> </div>
         </div>
         
     )

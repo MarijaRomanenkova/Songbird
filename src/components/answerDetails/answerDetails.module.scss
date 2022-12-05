@@ -2,7 +2,7 @@
 @import 'scss-source/mixins.scss';
 
 .AnswerDetails {
-    &__container {
+    &_Container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -17,13 +17,13 @@
             display:none;
         }
     }
-    &__Name_Text {
+    &_Name_Text {
     border-bottom: 1px solid $dark-mode-border;
     padding: 0rem 0rem 1rem ;
     margin: 0px 0px 0px 0.5rem;     
     }
-    &__Species_Text {
-        @extend .AnswerDetails__Name_Text;
+    &_Species_Text {
+        @extend .AnswerDetails_Name_Text;
         padding: 0.25rem 0rem 0rem ;         
     }
     &_Image {

@@ -1,8 +1,6 @@
 @import "react-h5-audio-player/lib/styles.css";
-
-@import './components/header/header.module.scss';
-
-@import './components/question/question.module.scss';
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
 @import './App.module.scss';
 
 html {

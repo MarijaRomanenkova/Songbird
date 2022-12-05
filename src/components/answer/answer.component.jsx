@@ -12,8 +12,7 @@ const Answer = () => {
     const [questionState, dispatch] = useContext(QuestionContext); 
     const thisLevelQuestionsArray = questionState.birdsData[questionState.level];
     const nextLevelQuestionsArray = questionState.birdsData[questionState.level +1];
-    const currentQuestionObject = thisLevelQuestionsArray[questionState.questionId];
-    const currentQuestionObjectId = currentQuestionObject.id; 
+    const currentQuestionObject = thisLevelQuestionsArray[questionState.randomQuestionID]; 
     const chosenAnswer = thisLevelQuestionsArray[questionState.chosenAnswerId ];
     const isGameOver = questionState.isGameOver;  
     
@@ -41,7 +40,7 @@ const Answer = () => {
 
     const chooseAnswer = (event) => {         
         dispatch({ type: 'CHOOSE', payload: event.target.value -1})        
-        if ( currentQuestionObjectId === event.target.value) {
+        if ( currentQuestionObject.id === event.target.value) {
             dispatch({ type: 'WIN', payload: event.target.value -1});             
             playCorrect();  
             changeAnswersListStyles(event.target.value, styles.AnswersList_Item__correct); 
@@ -101,8 +100,8 @@ const Answer = () => {
 
     return (
         <Fragment>
-            <div className= {!isGameOver ? styles.Answers__Container : styles.Hidden }>
-                <ul className={styles.AnswersList__Container}>
+            <div className= {!isGameOver ? styles.Answers_Container : styles.Hidden }>
+                <ul className={styles.AnswersList_Container}>
                     {answersList}              
                 </ul> 
                 { chosenAnswer ?
@@ -113,9 +112,9 @@ const Answer = () => {
                         audio={chosenAnswer.audio}
                         species={chosenAnswer.species}
                     /> :                   
-                    <div className={styles.AnswerDetails__Dummy}>
-                        <h4 className={styles.AnswerDetails__Dummy_Text}>Послушайте плеер.</h4>
-                        <h4 className={styles.AnswerDetails__Dummy_Text}>Выберите птицу из списка</h4>
+                    <div className={styles.AnswerDetails_Dummy}>
+                        <h4 className={styles.AnswerDetails_Dummy_Text}>Послушайте плеер.</h4>
+                        <h4 className={styles.AnswerDetails_Dummy_Text}>Выберите птицу из списка</h4>
                     </div>
                 }                  
             </div>

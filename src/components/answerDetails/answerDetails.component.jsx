@@ -3,11 +3,11 @@ import styles from 'components/answerDetails/answerDetails.module.scss'
 
 const AnswerDetails = ( chosenAnswer  ) => {    
     return (
-      <div className={styles.AnswerDetails__container}>
+      <div className={styles.AnswerDetails_Container}>
           <img className= {styles.AnswerDetails_Image} src={chosenAnswer.image} alt={`${chosenAnswer.name}`} />
         <div>
-          <h2 className={styles.AnswerDetails__Name_Text}>{chosenAnswer.name}</h2>
-          <h4 className={styles.AnswerDetails__Species_Text}>{chosenAnswer.species}</h4>
+          <h2 className={styles.AnswerDetails_Name_Text}>{chosenAnswer.name}</h2>
+          <h4 className={styles.AnswerDetails_Species_Text}>{chosenAnswer.species}</h4>
           <AudioPlayer             
             layout="horizontal-reverse" 
             src={chosenAnswer.audio}
@@ -19,7 +19,7 @@ const AnswerDetails = ( chosenAnswer  ) => {
             customVolumeControls={[]} 
           />
         </div>
-        <div className={styles.BirdDetails_Description}>{chosenAnswer.description}</div>       
+        <div className={styles.AnswerDetails_Description}>{chosenAnswer.description}</div>       
       </div>
     )
 }
