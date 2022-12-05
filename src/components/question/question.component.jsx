@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef} from "react";
 import { QuestionContext } from 'contexts/questionContext';
 import AudioPlayer from "react-h5-audio-player";  
 import MockUp from 'assets/bird-mock-up.jpg'
@@ -8,12 +8,21 @@ import styles from 'components/question/question.module.scss'
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
     const level = questionState.birdsData[questionState.level];   
-    const question = level[questionState.randomQuestionID] || {};  
+    const question = level[questionState.randomQuestionID];  
     const isGameOver = questionState.isGameOver;
     const isCorrectAnswer = questionState.isCorrectAnswer     
     const HIDDEN__ANSWER = '******';
 
+    const player = useRef(); 
+      const pausePlayer = () => {
+        player.current.audio.current.pause();    
+      };
+      
+    if(isCorrectAnswer === true) {
+        pausePlayer();
+    }
     
+     
     
     return ( 
         
@@ -35,6 +44,7 @@ const Question = () => {
                     volumeControls={true}
                     customAdditionalControls={[]}  
                     customVolumeControls={[]} 
+                    ref={player}
                                       
                 />
             </div> 
