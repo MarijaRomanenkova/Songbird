@@ -35,7 +35,7 @@ const Question = () => {
                     volumeControls={true}
                     customAdditionalControls={[]}  
                     customVolumeControls={[]} 
-                    onPause={is}                    
+                                      
                 />
             </div> 
         </div>
