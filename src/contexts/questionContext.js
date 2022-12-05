@@ -2,23 +2,20 @@ import { createContext, useReducer } from 'react';
 import birdsData from '../data';
 export const QuestionContext = createContext();
 
-
-
-const getQuestionId = () => {
-  const maximum = 6;
+const getRandomQuestionId = (level) => {  
+  const maximum = birdsData[level].length;
   const minimum = 1;
   const randomNumber =
     Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
   return randomNumber;
 };
 
+const MAXIMUM__SCORE__PER__LEVEL = 5;
 
-let MAXIMUM__SCORE__PER__LEVEL = 5;
 const setScore = (prevScore, clicks) => {
   let score = 0;
   for (let i = clicks; i < MAXIMUM__SCORE__PER__LEVEL +1; i++) {
     score++
-    
   }
   return prevScore + score
 }
@@ -27,13 +24,13 @@ const setScore = (prevScore, clicks) => {
 const initialState = {
   birdsData,
   level: 0,
-  questionId: getQuestionId(),
+  questionId: getRandomQuestionId(0),
   chosenAnswerId: null,
   clicks: 0,
   score: 0,
-  correctAnswers: 0,
+  numberOfCorrectAnswers: 0,
   isCorrectAnswer: false,  
-  win: false,
+  isGameOver: false,
 };
 
 
@@ -43,19 +40,19 @@ const reducer = (state, action) => {
       return {
         ...state,
         level: state.level + 1,
-        questionId: getQuestionId(),
+        questionId: getRandomQuestionId(state.level),
         chosenAnswerId: null,        
         isCorrectAnswer: false,
         clicks: 0,        
-        win: false,
+        isGameOver: false,
       };
 
     case 'WIN':
-      if (state.correctAnswers > 4) {
+      if (state.numberOfCorrectAnswers > 4) {
         return {
           ...state,
           score: setScore(state.score, state.clicks),
-          win: true,  
+          isGameOver: true,  
           isCorrectAnswer: true,        
         };
       } else {
@@ -63,8 +60,8 @@ const reducer = (state, action) => {
           ...state,
           chosenAnswerId: action.payload,
           isCorrectAnswer: true,
-          correctAnswers: state.correctAnswers + 1,
-          win: false,
+          numberOfnumberOf: state.numberOfCorrectAnswers + 1,
+          isGameOver: false,
           score: setScore(state.score, state.clicks),
         };
       }
@@ -74,20 +71,20 @@ const reducer = (state, action) => {
         ...state,
         clicks: state.clicks + 1,        
         chosenAnswerId: action.payload ,
-        win: false,
+        isGameOver: false,
       };
 
     case 'NEW_GAME':
       return {
         birdsData,        
-        questionId: getQuestionId(),
+        questionId: getRandomQuestionId(state.level),
         chosenAnswerId: null,
         clicks: 0,
         score: 0,
-        correctAnswers: 0,
+        numberOfCorrectAnswers: 0,
         isCorrectAnswer: false,
         level: 0,
-        win: false,
+        isGameOver: false,
       };
     default:
       throw new Error(`Unknown action type: ${action.type}`);

@@ -15,7 +15,7 @@ const Answer = () => {
     const currentQuestionObject = thisLevelQuestionsArray[questionState.questionId];
     const currentQuestionObjectId = currentQuestionObject.id; 
     const chosenAnswer = thisLevelQuestionsArray[questionState.chosenAnswerId ];
-    const gameOver = questionState.win;  
+    const isGameOver = questionState.isGameOver;  
     
     
     const [playCorrect] = useSound(correct);
@@ -69,7 +69,7 @@ const Answer = () => {
     const handleNextButtonClick = () => {
         setIsNextButtonDisabled(true);
         dispatch({type:"NEXT_LEVEL"});        
-        if(gameOver === true) {  
+        if(isGameOver === true) {  
             setIsNextButtonDisabled(true);          
             setAnswersListStyles(thisLevelQuestionsArray.map(item => ({
                 ...item,
@@ -97,13 +97,11 @@ const Answer = () => {
             > {item.name}
         </li>                                                                  
         )
-    )
-
-    
+    )    
 
     return (
         <Fragment>
-            <div className= {!gameOver ? styles.Answers__Container : styles.Hidden }>
+            <div className= {!isGameOver ? styles.Answers__Container : styles.Hidden }>
                 <ul className={styles.AnswersList__Container}>
                     {answersList}              
                 </ul> 
@@ -124,7 +122,7 @@ const Answer = () => {
             <button
                 type="button"
                 disabled={isNextButtonDisabled}
-                className={gameOver ? styles.Hidden : !isNextButtonDisabled ? styles.Btn : styles.Disabled }
+                className={isGameOver ? styles.Hidden : !isNextButtonDisabled ? styles.Btn : styles.Disabled }
                 onClick={handleNextButtonClick}
             > Next Level
             </button>

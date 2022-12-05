@@ -8,11 +8,11 @@ const Question = () => {
     const [questionState] = useContext(QuestionContext);     
     const level = questionState.birdsData[questionState.level];   
     const question = level[questionState.questionId] || {};  
-    const gameOver = questionState.win;     
+    const isGameOver = questionState.win;     
     const HIDDEN__ANSWER = '******';
     
     return ( 
-        <div className={!gameOver ? 'question-container' : 'hidden'}>            
+        <div className={!isGameOver ? 'question-container' : 'hidden'}>            
             <img 
                 className= 'question-image'
                 src={questionState.isCorrectAnswer ? question.image : MockUp} alt={question.name} />
