@@ -76,14 +76,14 @@ const reducer = (state, action) => {
 
     case 'NEW_GAME':
       return {
-        birdsData, 
-        level: 0,       
-        randomQuestionID: getRandomQuestionId(state.level),
+        birdsData,
+        level: 0,
+        randomQuestionID: getRandomQuestionId(0),
         chosenAnswerId: null,
         numberOfAttempts: 0,
         score: 0,
         numberOfCorrectAnswers: 0,
-        isCorrectAnswer: false,        
+        isCorrectAnswer: false,
         isGameOver: false,
       };
     default:

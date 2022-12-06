@@ -1,4 +1,6 @@
-import {  Fragment, useContext, useEffect, useState } from 'react';
+/* eslint-disable react/function-component-definition */
+import React from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
 import cx from 'classnames';
@@ -6,21 +8,22 @@ import cx from 'classnames';
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component'; 
-import styles from './answer.module.scss'
+import styles from './answer.module.scss';
 
 
-const Answer = () => { 
-    const [questionState, dispatch] = useContext(QuestionContext); 
+const Answer = () => {
+  const [questionState, dispatch] = useContext(QuestionContext); 
     const thisLevelQuestionsArray = questionState.birdsData[questionState.level];
     const nextLevelQuestionsArray = questionState.birdsData[questionState.level +1];
-    const currentQuestionObject = thisLevelQuestionsArray[questionState.randomQuestionID]; 
+    const currentQuestionObject = thisLevelQuestionsArray[questionState.randomQuestionID] || {}; 
     const chosenAnswer = thisLevelQuestionsArray[questionState.chosenAnswerId ];
-    const isGameOver = questionState.isGameOver;  
-    
-    
+    const level = questionState.level
+    const isGameOver = questionState.isGameOver; 
     const [playCorrect] = useSound(correct);
     const [playIncorrect] = useSound(incorrect);
     
+    
+
     
     const initialAnswersListStyles = thisLevelQuestionsArray.map(item => ({
         ...item,
@@ -29,20 +32,23 @@ const Answer = () => {
             
     }))     
 
-    const [answersListStyles, setAnswersListStyles] = useState( initialAnswersListStyles )
-    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+  const [answersListStyles, setAnswersListStyles] = useState( initialAnswersListStyles )
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    setIsNextButtonDisabled(true);
+}, [isGameOver]);
 
     useEffect(() => {
-        setAnswersListStyles(initialAnswersListStyles)            
-    }, [currentQuestionObject])
+        setAnswersListStyles(initialAnswersListStyles);
+    }, [level]);
 
        
     const nextButtonClasses = cx({
         button: true,
         [styles.Hidden]: isGameOver,
-        [styles.Disabled] : isNextButtonDisabled,
+        [styles.Disabled]: isNextButtonDisabled,
         [styles.Btn]: !isNextButtonDisabled,
-        
     })
  
 
@@ -75,12 +81,10 @@ const Answer = () => {
         )
     }
 
-    const handleNextButtonClick = () => {
-        if(isGameOver === false) {
-            setIsNextButtonDisabled(true);
-            dispatch({type:"NEXT_LEVEL"}); 
-        } else {  
-            setIsNextButtonDisabled(true);          
+    const handleNextButtonClick = () => {         
+        setIsNextButtonDisabled(true);
+        dispatch({type:"NEXT_LEVEL"}); 
+        if(isGameOver === true) {                     
             setAnswersListStyles(thisLevelQuestionsArray.map(item => ({
                 ...item,
                 itemClass: styles.AnswersList_Item,
@@ -95,12 +99,11 @@ const Answer = () => {
             isAlreadyChosen: false                  
             })
         ))
-
     }
 
     
 
-    const answersList = answersListStyles.map((item) => (  
+    const answersList = answersListStyles.map((item) => (
         <li
             className={item.itemClass}
             key={item.id}
@@ -143,5 +146,4 @@ const Answer = () => {
 }
 
 export default Answer;
-
 

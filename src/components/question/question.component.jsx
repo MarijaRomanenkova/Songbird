@@ -8,7 +8,7 @@ import styles from 'components/question/question.module.scss'
 const Question = () => {    
     const [questionState] = useContext(QuestionContext);     
     const level = questionState.birdsData[questionState.level];   
-    const question = level[questionState.randomQuestionID];  
+    const question = questionState.currentQuestionObject || {};  
     const isGameOver = questionState.isGameOver;
     const isCorrectAnswer = questionState.isCorrectAnswer     
     const HIDDEN__ANSWER = '******';
@@ -17,7 +17,7 @@ const Question = () => {
       const pausePlayer = () => {
         player.current.audio.current.pause();    
       };
-      
+
     if(isCorrectAnswer === true) {
         pausePlayer();
     }
@@ -29,7 +29,7 @@ const Question = () => {
         <div className={!isGameOver ? styles.Question_Container : styles.Hidden}>            
             <img 
                 className= {styles.Question_Image}
-                src={questionState.isCorrectAnswer ? question.image : MockUp} alt={question.name} />
+                src={questionState.isCorrectAnswer ? question.image : MockUp} alt={question.name ? question.name : ''} />
             <div className = {styles.Question_Box} >
                 <h1 className = {styles.Question_Title}>{
                     questionState.isCorrectAnswer === false ? HIDDEN__ANSWER : question.name }
