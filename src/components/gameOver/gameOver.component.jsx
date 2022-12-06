@@ -13,12 +13,12 @@ const GameOver = () => {
 
     return (
         <Fragment>
-            <div className={ isGameOver ? styles.GameOver__Container : styles.Hidden}>
+            <div className={ isGameOver ? styles.GameOver_Container : styles.Hidden}>
                 <Confetti width={windowWidth} height={windowHeight} />
-                <h1 className={styles.GameOver__Title}>Поздравляем!</h1> 
-                <h5 className={styles.GameOver__Text}>Вы прошли викторину и набрали {score} из 30 возможных баллов</h5> 
-                <h5 className={ score < 29 ? styles.GameOver__Text : styles.Hidden} >Попробуете набрать больше? </h5>                   
-                <button className={ score < 29 ? styles.GameOver__Btn : styles.Hidden } type="button" onClick={()=> dispatch({type:"NEW_GAME"})}>
+                <h1 className={styles.GameOver_Title}>Поздравляем!</h1> 
+                <h5 className={styles.GameOver_Text}>Вы прошли викторину и набрали {score} из 30 возможных баллов</h5> 
+                <h5 className={ score < 29 ? styles.GameOver_Text : styles.Hidden} >Попробуете набрать больше? </h5>                   
+                <button className={ score < 29 ? styles.GameOver_Btn : styles.Hidden } type="button" onClick={()=> dispatch({type:"NEW_GAME"})}>
                 Попробовать еще раз!
                 </button>
             </div>

@@ -5,7 +5,7 @@
     display: none;
 }
 .GameOver{
-    &__Container  { 
+    &_Container  { 
         display: flex;
         margin: 0rem auto ;
         flex-direction: column;
@@ -22,7 +22,7 @@
                 padding: 1rem;
         }
     }
-    &__Title {
+    &_Title {
         font-size: 4.5rem;
         font-weight: 400;
         margin-bottom: 0.5rem;
@@ -31,7 +31,7 @@
                 
             }
     }
-    &__Text {
+    &_Text {
         font-size: 1.172rem;
         margin-bottom: 1.5rem;
         font-weight: 400;
@@ -39,7 +39,7 @@
             font-size: 1.5rem;
         }
     }
-    &__Btn {
+    &_Btn {
         display:inline-block;
         margin: 3rem auto;
         color: $white;    

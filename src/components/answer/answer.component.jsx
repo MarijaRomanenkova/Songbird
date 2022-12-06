@@ -1,11 +1,12 @@
 import {  Fragment, useContext, useEffect, useState } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
+import cx from 'classnames';
 
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component'; 
-import styles from './answer.module.scss';
+import styles from './answer.module.scss'
 
 
 const Answer = () => { 
@@ -32,11 +33,20 @@ const Answer = () => {
     const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
     useEffect(() => {
-        setAnswersListStyles(initialAnswersListStyles)
-            
+        setAnswersListStyles(initialAnswersListStyles)            
     }, [currentQuestionObject])
-    
-    
+
+       
+    const nextButtonClasses = cx({
+        button: true,
+        [styles.Hidden]: isGameOver,
+        [styles.Disabled] : isNextButtonDisabled,
+        [styles.Btn]: !isNextButtonDisabled,
+        
+    })
+ 
+
+    console.log('nextButtonClass', nextButtonClasses)
 
     const chooseAnswer = (event) => {         
         dispatch({ type: 'CHOOSE', payload: event.target.value -1})        
@@ -66,9 +76,10 @@ const Answer = () => {
     }
 
     const handleNextButtonClick = () => {
-        setIsNextButtonDisabled(true);
-        dispatch({type:"NEXT_LEVEL"});        
-        if(isGameOver === true) {  
+        if(isGameOver === false) {
+            setIsNextButtonDisabled(true);
+            dispatch({type:"NEXT_LEVEL"}); 
+        } else {  
             setIsNextButtonDisabled(true);          
             setAnswersListStyles(thisLevelQuestionsArray.map(item => ({
                 ...item,
@@ -86,6 +97,8 @@ const Answer = () => {
         ))
 
     }
+
+    
 
     const answersList = answersListStyles.map((item) => (  
         <li
@@ -121,7 +134,7 @@ const Answer = () => {
             <button
                 type="button"
                 disabled={isNextButtonDisabled}
-                className={isGameOver ? styles.Hidden : !isNextButtonDisabled ? styles.Btn : styles.Disabled }
+                className= {nextButtonClasses}                
                 onClick={handleNextButtonClick}
             > Next Level
             </button>
